@@ -1,0 +1,170 @@
+# RAG — Document Intelligence
+
+RAG (Retrieval-Augmented Generation) lets you ground AI responses in your own documents. Instead of relying purely on training data, the AI searches your uploaded content for relevant context before answering.
+
+---
+
+## How It Works
+
+```
+1. You provide a URL
+        ↓
+2. AIML App scrapes the page content
+        ↓
+3. Content is split into chunks (150 words, 30-word overlap)
+        ↓
+4. Each chunk is embedded via Cloudflare Workers AI
+   (model: bge-base-en-v1.5, 768 dimensions)
+        ↓
+5. Embeddings stored in Cloudflare Vectorize
+   (indexed by sessionId for isolation)
+        ↓
+6. You ask a question in chat with rag_session_id
+        ↓
+7. Your question is embedded and the top-5 chunks
+   are retrieved via cosine similarity search
+        ↓
+8. Chunks are injected as context before the AI sees your question
+        ↓
+9. AI answers using both its training knowledge + your document
+```
+
+---
+
+## Ingest a Document
+
+```http
+POST /api/rag
+Authorization: Bearer <token>
+Content-Type: application/json
+
+{
+  "action": "ingest",
+  "url": "https://docs.yourproduct.com/api-reference"
+}
+```
+
+**Response**
+```json
+{
+  "ok": true,
+  "data": {
+    "session_id": "rag_abc123",
+    "chunks_stored": 47,
+    "message": "Document ingested successfully. Use rag_session_id in chat requests."
+  }
+}
+```
+
+Keep the `session_id` — you'll pass it in every chat request to use this document's context.
+
+---
+
+## Query with Document Context
+
+Add `rag_session_id` to any chat request:
+
+```http
+POST /api/chat
+Authorization: Bearer <token>
+Content-Type: application/json
+
+{
+  "message": "What are the rate limits for the Pro plan?",
+  "model": "gemini",
+  "session_id": "room_xyz",
+  "rag_session_id": "rag_abc123"
+}
+```
+
+The platform:
+1. Embeds your question
+2. Finds the 5 most semantically similar chunks from your document
+3. Prepends them as context in the system prompt
+4. The AI answers using both the retrieved content and its training data
+
+---
+
+## Ingest Plain Text
+
+You can also ingest raw text instead of a URL:
+
+```http
+POST /api/rag
+Authorization: Bearer <token>
+Content-Type: application/json
+
+{
+  "action": "ingest_text",
+  "text": "Our refund policy allows returns within 30 days of purchase...",
+  "label": "Refund Policy"
+}
+```
+
+---
+
+## Destroy a Session
+
+RAG sessions auto-expire after 8 hours via KV TTL. To destroy one immediately:
+
+```http
+POST /api/rag
+Authorization: Bearer <token>
+Content-Type: application/json
+
+{ "action": "destroy", "session_id": "rag_abc123" }
+```
+
+This deletes all vectors from Vectorize scoped to that session ID.
+
+---
+
+## Best Practices
+
+### Choose the Right URLs
+- Use documentation pages, FAQs, product specs, policy documents
+- Avoid login-walled pages — the scraper fetches as an unauthenticated client
+- Prefer pages with dense, structured text over pages heavy in JavaScript rendering
+
+### Multiple Documents
+Start multiple ingestion requests to build up context from several sources. Use the same `rag_session_id` for all follow-up questions — the retrieval searches across all chunks from that session.
+
+```
+rag_session_1 → docs.yourproduct.com/api
+rag_session_2 → docs.yourproduct.com/auth
+rag_session_3 → changelog.yourproduct.com
+```
+
+Then alternate between sessions based on the topic of the question, or ingest all into a single session for unified search.
+
+### Model Selection
+RAG works with any model. For document-heavy Q&A:
+- **Gemini 2.5 Flash** — fast, cheap, good for FAQ-style queries
+- **Claude Sonnet / Opus** — excellent at following context precisely and citing specific passages
+- **DeepSeek R1** — strong at reasoning over technical documentation
+
+### Verify Responses
+Use the cross-model **Verify** feature on RAG responses when accuracy matters. The verification model also receives the same RAG context.
+
+---
+
+## Limitations
+
+| Parameter | Value |
+|---|---|
+| Session TTL | 8 hours (auto-expires) |
+| Chunk size | 150 words |
+| Chunk overlap | 30 words |
+| Top-k retrieval | 5 chunks per query |
+| Embedding model | `@cf/baai/bge-base-en-v1.5` (768 dimensions) |
+| Similarity metric | Cosine |
+| Max URL content | Scraper fetches the full page text — very long pages are chunked fully |
+
+---
+
+## Privacy
+
+- Document content is stored in Cloudflare Vectorize as vector embeddings — the original text of each chunk is stored alongside the vector for context injection
+- Sessions are isolated by `sessionId` in Vectorize metadata — cross-session retrieval is impossible
+- All session data is deleted after 8 hours or on manual destroy
+- Content from ingested URLs is never used to train any model
