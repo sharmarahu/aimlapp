@@ -140,7 +140,7 @@ Content-Type: application/json
 
 {
   "message": "Explain transformer attention mechanisms",
-  "model": "gemini",
+  "model": "deepseek",
   "session_id": "<your_session_token>",
   "room_id": "room_abc123",
   "history": [
@@ -170,7 +170,7 @@ Content-Type: application/json
   "ok": true,
   "data": {
     "message": "Transformer attention mechanisms work by...",
-    "model": "gemini",
+    "model": "deepseek",
     "tokens_used": 312,
     "credits_remaining": 149,
     "ai_msg_id": "msg_xyz789",
@@ -204,7 +204,7 @@ Authorization: Bearer <token>
         "id": "msg_002",
         "role": "assistant",
         "content": "Hello! How can I help?",
-        "model": "gemini",
+        "model": "deepseek",
         "created_at": "2025-05-12T10:00:01Z"
       }
     ],
@@ -283,7 +283,7 @@ Content-Type: application/json
 
 {
   "message": "What authentication methods does the API support?",
-  "model": "gemini",
+  "model": "deepseek",
   "session_id": "room_abc123",
   "rag_session_id": "rag_abc123"
 }
@@ -529,21 +529,14 @@ Content-Type: application/json
 
 ## Model Reference
 
-| Key | Model | Provider | Credits/Request | Min Plan |
-|---|---|---|---|---|
-| `gemini` | Gemini 2.5 Flash | Google | 1 | Free |
-| `gemini-1.5-pro` | Gemini 1.5 Pro | Google | 5 | Pro |
-| `gemini-2.0-flash` | Gemini 2.0 Flash | Google | 2 | Free |
-| `openai` | GPT-4.1 | OpenAI | 10 | Pro |
-| `gpt-4o` | GPT-4o | OpenAI | 8 | Pro |
-| `gpt-4o-mini` | GPT-4o Mini | OpenAI | 2 | Free |
-| `o1-mini` | o1-mini | OpenAI | 15 | Pro |
-| `o3-mini` | o3-mini | OpenAI | 20 | Enterprise |
-| `anthropic` | Claude Opus 4.7 | Anthropic | 20 | Enterprise |
-| `claude-sonnet` | Claude Sonnet 4.5 | Anthropic | 10 | Pro |
-| `claude-haiku` | Claude Haiku 4.5 | Anthropic | 3 | Free |
-| `deepseek` | DeepSeek V3 | DeepSeek | 2 | Free |
-| `deepseek-r1` | DeepSeek R1 | DeepSeek | 5 | Pro |
+AIMLAPP is single-provider: **DeepSeek**, with a flat **1 credit per request** for every model. Pass the vendor name in `model` and the specific version in `model_version`.
+
+| `model` | `model_version` | Description | Credits/Request |
+|---|---|---|---|
+| `deepseek` | `deepseek-chat` | DeepSeek V3 — fast general chat (default) | 1 |
+| `deepseek` | `deepseek-reasoner` | DeepSeek R1 — step-by-step reasoning | 1 |
+
+> Requests for any other provider are transparently routed to DeepSeek. Embeddings for RAG/memory use Cloudflare Workers AI (`bge-base-en-v1.5`) — a separate, free path.
 
 ---
 

@@ -1,175 +1,122 @@
 # Use Cases
 
-AIML App is a horizontal platform that adapts to how your team works. Below are the most common deployment patterns across industries.
+AIMLAPP is **AI-native project & scrum management** with a team-chat and
+knowledge layer built in. Below are the most common ways teams run on it. Every
+plan runs on one AI — **DeepSeek (V3 + R1)** — at a flat 1 credit per request.
 
 ---
 
-## 1. Enterprise AI Assistant for Internal Teams
+## 1. Engineering teams running agile sprints  *(the core)*
 
-**Who:** Mid-to-large companies wanting to give all employees access to AI without managing API keys or billing per-person.
+**Who:** Software teams running Scrum or Kanban who want less ritual overhead.
 
 **How it works:**
-- IT provisions an org with a shared credit pool (e.g. 100,000 credits/month)
-- Employees get invited via email, no credit card needed
-- Department heads set per-member credit quotas to prevent runaway usage
-- The analytics dashboard gives IT a real-time view of usage by model and user
+- Create a board, plan a sprint, and let the **AI Scrum Master** run the cadence.
+- It opens daily standups, collects async answers, nudges non-responders, and posts a synthesised digest to the team huddle.
+- Mid-sprint it forecasts whether you'll land the commitment and suggests what to descope; it sweeps stale tickets and flags duplicates.
+- At sprint end it runs the retro, clusters themes, and **files the top actions back as tickets**.
 
-**Key features used:**
-- Multi-tenant organizations with credit pools
-- Per-member credit quotas
-- Admin analytics dashboard
-- 40+ models so different teams use what fits (e.g. finance uses Claude for reasoning, engineering uses DeepSeek for code)
+**Features used:** AI Scrum Master · 7-column board + sprints · predictability reports (say/do, carryover, cycle time) · huddles.
 
-**Outcome:** Centralized AI access, predictable costs, no shadow IT with individual API keys.
+**Outcome:** The rituals run themselves, the metrics are honest (snapshotted at close), and nothing falls through the cracks.
 
 ---
 
-## 2. AI-Powered Customer Support
+## 2. Startups & small teams  *(free forever)*
 
-**Who:** SaaS companies that want their support agents to answer tickets faster using AI.
+**Who:** Founders and small teams who need one place to plan work and talk.
 
 **How it works:**
-- Agents open AIML App alongside their helpdesk
-- They paste customer questions and get suggested responses
-- They attach product documentation URLs via RAG — the AI answers only from official docs
-- The **Verify** feature lets agents cross-check any answer with a second model before sending
+- Start free at [aimlapp.com/start](https://aimlapp.com/start) — up to **15 people**, your own `company.aimlapp.com`, no credit card.
+- Plan on the board, chat in huddles + DMs, draft with AI, and let the AI Scrum Master keep standups moving.
 
-**Key features used:**
-- RAG (attach knowledge base URLs — docs, FAQs, changelogs)
-- Cross-model verification (reduce hallucinations before sending to customer)
-- Chat history (context carries across the session)
+**Features used:** Full free workspace · board · huddles/DMs · AI chat · canvases · memory.
 
-**Outcome:** Faster ticket resolution, fewer escalations, AI grounded in your actual documentation.
+**Outcome:** A complete, AI-run workspace at zero cost until you outgrow it.
 
 ---
 
-## 3. Research & Analysis Teams
+## 3. Multi-team organisations  *(portfolio view)*
 
-**Who:** Analysts, consultants, or researchers who synthesize large volumes of information.
+**Who:** Orgs running several squads who need a roll-up above the boards.
 
 **How it works:**
-- Paste report URLs or paste document text into RAG ingestion
-- Ask follow-up questions across multiple documents in a single session
-- Use high-reasoning models (o3-mini, Claude Opus, DeepSeek R1) for complex analysis
-- Export or email the generated Meeting Minutes from research sessions
+- Group work under **initiatives → epics → milestones** with cross-board dependencies and per-member capacity.
+- Each team gets its own board (`org` / `team` / `private` visibility), with a Scrum Master role separate from org admin.
 
-**Key features used:**
-- RAG document intelligence (multiple URLs per session)
-- Model selection (match model capability to task complexity)
-- Meeting Minutes generation (email session summary to stakeholders)
+**Features used:** Portfolio layer · multi-team boards · capacity planning · Scrum Master role.
 
-**Outcome:** Hours of reading time compressed into minutes. Analysis grounded in the source material, not just training data.
+**Outcome:** Squad autonomy with leadership visibility into delivery and risk.
 
 ---
 
-## 4. Software Development Teams
+## 4. Distributed & async teams
 
-**Who:** Engineering teams who pair-program with AI, review code, write tests, and draft technical documentation.
+**Who:** Remote/timezone-spread teams where live standups don't work.
 
 **How it works:**
-- Developers join a shared collaborative room during code review or architecture sessions
-- Everyone can see the AI's responses in real time — no copy-pasting back and forth in Slack
-- DeepSeek V3/R1 for code generation, Claude Opus for architecture reviews, GPT-4.1 for documentation
-- RAG is used to attach internal API specs or GitHub READMEs
+- Standups are **async** — everyone answers on their own time; the AI assembles the digest.
+- Huddles, DMs, @mentions with an inbox, scheduled send, presence/status, and Do-Not-Disturb keep communication tidy across timezones.
 
-**Key features used:**
-- Real-time collaborative rooms (whole team + AI in one room)
-- Multi-model selection (right model for each task)
-- RAG (internal documentation, API specs)
-- Thread replies (follow up on specific AI responses without losing context)
+**Features used:** Async AI standups · huddles/DMs · mentions inbox · scheduled send · DND.
 
-**Outcome:** AI pair-programming at the team level, not just individual level. Architecture decisions documented automatically.
+**Outcome:** Alignment without a synchronous meeting on the calendar.
 
 ---
 
-## 5. Education & Training
+## 5. Knowledge work with AI chat, RAG & memory
 
-**Who:** Training providers, bootcamps, and L&D teams who build learning experiences around AI.
+**Who:** Anyone who wants grounded AI alongside their work, not in a separate tab.
 
 **How it works:**
-- Instructors create org-level access for cohorts of students
-- Each cohort gets a shared credit pool with per-student quotas
-- Students use AI to get explanations, generate practice problems, and check their work
-- Instructors monitor usage via the analytics dashboard to see which topics generate the most AI queries
+- Attach a URL or paste text — it's ingested via **RAG** and queryable in natural language.
+- Keep a living **canvas** per huddle and a private **memory** the AI can recall from.
+- Use slash commands and the AI-assist toolbar (rewrite / shorten / translate / summarise) inline, with reusable **personas**.
 
-**Key features used:**
-- Organizations with per-member credit quotas (controls usage per student)
-- Analytics (understand where students struggle based on query volume)
-- Free tier models (keep costs low for high-volume student usage)
+**Features used:** RAG · canvases · personal memory · personas.
 
-**Outcome:** Scalable AI tutoring without individual student billing or API key management.
+**Outcome:** AI that's grounded in *your* material and context, not just its training data.
 
 ---
 
-## 6. Consulting & Professional Services
+## 6. Enterprises with security & compliance needs
 
-**Who:** Consultants who deliver AI-powered insights to clients as a service.
+**Who:** Larger orgs with IT/security requirements.
 
 **How it works:**
-- Consultants use their AIML App org to run analysis during engagements
-- Client-specific documents are loaded into RAG at the start of each engagement
-- Deliverables are produced using the MoM generator after client workshops
-- Consultants verify any critical recommendation with the cross-model Verify feature before presenting
+- Connect **Active Directory / Microsoft Entra / Okta** via **SCIM** so users are provisioned and de-provisioned automatically; enforce **SSO** for the company domain.
+- Turn on **2FA**, **DLP/PII masking**, **custom retention**, and review the **immutable audit log** (CSV export). Export org data on demand (GDPR).
+- Optionally route AI through your **own DeepSeek key** (encrypted at rest).
 
-**Key features used:**
-- RAG (client documents, contracts, reports)
-- Meeting Minutes (auto-generate workshop summaries)
-- Cross-model verification (reduce risk on high-stakes recommendations)
-- Org roles (junior consultants as members, senior consultants as org_admins)
+**Features used:** SSO + SCIM/AD · 2FA · audit log · DLP · retention · data export · BYO key.
 
-**Outcome:** Faster delivery, documented workshops, reduced hallucination risk on client-facing output.
+**Outcome:** Enterprise IAM and governance without leaving the tool your team already works in.
 
 ---
 
-## 7. Product & Marketing Teams
+## 7. API integration for custom workflows
 
-**Who:** Non-technical teams that need AI for writing, research, and ideation but don't want to manage tools.
+**Who:** Developers embedding AIMLAPP into their own products or automations.
 
 **How it works:**
-- Marketers use Gemini 2.5 Flash for fast first drafts
-- They verify brand-sensitive copy with Claude Opus
-- Product managers attach competitor pages via RAG to ground competitive analysis
-- Teams share rooms during campaign brainstorming sessions
+- Call the REST API with Bearer-token auth — `/api/chat` (DeepSeek), RAG ingestion, scrum, orgs.
+- Org-scoped service-account tokens (scoped, IP-allow-listed) for machine-to-machine use.
 
-**Key features used:**
-- Multi-model (fast drafting + quality review in one tool)
-- Cross-model verification
-- RAG (competitor research, brand guidelines)
-- Collaborative rooms (team brainstorming)
+**Features used:** REST API · org API tokens · SCIM endpoint.
 
-**Outcome:** AI-assisted content that goes through a structured verification step, reducing brand risk.
+**Outcome:** AIMLAPP as the AI-and-project backend for your own product — one prepaid provider, no rate-limit juggling.
 
 ---
 
-## 8. API Integration for Custom Workflows
+## Feature-to-use-case matrix
 
-**Who:** Developers who want to embed AIML App's capabilities into their own products or automation pipelines.
-
-**How it works:**
-- Use the REST API with Bearer token auth
-- Build custom frontends that call `/api/chat` with any supported model
-- Trigger RAG ingestion programmatically when documents change
-- Use the analytics API to build internal usage dashboards
-
-**Key features used:**
-- Full REST API (chat, RAG, auth, orgs)
-- All 40+ models available via API
-- Credit system tracks usage automatically
-
-**Outcome:** AIML App becomes the AI inference backend for your own product — without managing provider relationships or rate limits.
-
----
-
-## Feature-to-Use-Case Matrix
-
-| Feature | Enterprise | Support | Research | Dev Teams | Education | Consulting |
+| Feature | Eng/Scrum | Startup | Multi-team | Async | Knowledge | Enterprise |
 |---|:---:|:---:|:---:|:---:|:---:|:---:|
-| Multi-model chat | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ |
-| Cross-model verify | ✅ | ✅ | ✅ | ✅ | | ✅ |
-| RAG document chat | ✅ | ✅ | ✅ | ✅ | | ✅ |
-| Real-time rooms | ✅ | | ✅ | ✅ | ✅ | ✅ |
-| Organizations | ✅ | ✅ | | ✅ | ✅ | ✅ |
-| Credit pools & quotas | ✅ | ✅ | | | ✅ | ✅ |
-| Meeting Minutes | ✅ | | ✅ | ✅ | | ✅ |
-| Analytics dashboard | ✅ | ✅ | | ✅ | ✅ | |
-| REST API | | | ✅ | ✅ | | |
+| AI Scrum Master | ✅ | ✅ | ✅ | ✅ | | ✅ |
+| Board + sprints + reports | ✅ | ✅ | ✅ | ✅ | | ✅ |
+| Portfolio (epics/milestones) | ✅ | | ✅ | | | ✅ |
+| Huddles / DMs / mentions | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ |
+| AI chat + RAG + memory | ✅ | ✅ | | | ✅ | ✅ |
+| SSO + SCIM / AD | | | ✅ | | | ✅ |
+| Audit log / DLP / retention | | | ✅ | | | ✅ |
+| REST API + service tokens | ✅ | | | | ✅ | ✅ |

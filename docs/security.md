@@ -27,6 +27,16 @@ AIML App is built with a security-first architecture. Every layer — authentica
 - Reset tokens are single-use, stored in KV with a **1-hour TTL**
 - Tokens are delivered via email only (never in API responses)
 - Tokens are deleted from KV immediately upon use
+- A password reset bumps a `sessions_revoked_at` marker, so any leaked sessions die instantly
+
+### Two-factor & passwordless
+- **TOTP 2FA** — users can enrol an authenticator app (QR code) from their security page; login then requires a 6-digit code
+- **Magic-link sign-in** — passwordless email link, single-use, 15-minute TTL
+
+### Enterprise identity (SSO + SCIM / Active Directory)
+- **SSO** via SAML / OIDC — employees sign in with their corporate identity (Microsoft Entra, Okta, etc.). Org admins can **enforce SSO** so password login is rejected for the company domain.
+- **SCIM 2.0 provisioning** — connect your **Active Directory / Microsoft Entra / Okta** and users are **created, updated, and de-provisioned automatically**. When someone is removed in AD, they're deactivated here on the next sync. Set up self-service from the org admin panel: generate a scoped SCIM token, paste it plus the SCIM Tenant URL into your IdP. Tokens are SHA-256 hashed at rest, shown once, scoped, and revocable.
+- **Org-scoped API tokens** — service accounts with capability scopes and optional IP allow-lists.
 
 ---
 
@@ -41,7 +51,7 @@ super_user  (hardcoded — cannot be modified or deleted via any API)
 ```
 
 ### Super User Protection
-The super user account (`it.rahul1@gmail.com`) has absolute protection at the code level:
+A single, hardcoded super-user account has absolute protection at the code level:
 
 - **Undeletable** — `deleteUser` rejects any attempt to delete this account
 - **Unmodifiable** — `changeUserRole`, `manageUserCredits`, `extendSubscription` all reject operations targeting this account
@@ -127,6 +137,18 @@ The credit system prevents runaway AI usage and provides per-request cost accoun
 
 ---
 
+## Compliance & data rights
+
+- **Immutable audit log** — every privileged action (role changes, member removal, branding, deletions, scrum events) is written to an append-only audit log. Org admins can **CSV-export** it.
+- **DLP / PII masking** — optional regex-based redaction of sensitive data before it reaches the model.
+- **Configurable retention** — per-org and per-channel retention windows.
+- **Tenant isolation** — every read/write is scoped by `org_id` at the SQL layer, enforced (not just hidden). Private huddles are membership-gated at the data layer.
+- **GDPR / data rights** — one-click **org data export** (full JSON of the tenant) and **self-service account deletion** (guarded by password or 2FA; org owners must transfer first so a tenant is never orphaned). Removed members are **anonymised** across shared content rather than leaving dangling identities.
+- **BYO LLM key** — enterprises can route AI through their own DeepSeek key, **encrypted at rest** with AES-GCM and per-org key derivation.
+- **Cost ceilings** — AI is single-provider and **prepaid** (hard cap), plus per-user/per-org credit limits and a global daily AI budget breaker — a surprise AI bill is impossible.
+
+---
+
 ## Infrastructure Security
 
 ### Edge Network
@@ -150,7 +172,7 @@ The credit system prevents runaway AI usage and provides per-request cost accoun
 
 ## Security Contact
 
-Found a vulnerability? Please report it responsibly to: **it.rahul1@gmail.com**
+Found a vulnerability? Please report it responsibly via **[aimlapp.com/contact](https://aimlapp.com/contact)** or **security@aimlapp.com**.
 
 Include:
 - Description of the vulnerability

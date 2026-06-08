@@ -1,146 +1,126 @@
-# AIML App — Enterprise AI Assistant Platform
+# AIMLAPP — AI Project & Scrum Management
 
 <p align="center">
   <img src="https://img.shields.io/badge/Platform-Cloudflare_Workers-F38020?style=for-the-badge&logo=cloudflare" />
-  <img src="https://img.shields.io/badge/Models-40%2B_LLMs-6366F1?style=for-the-badge" />
+  <img src="https://img.shields.io/badge/AI-DeepSeek_V3_%26_R1-7C3AED?style=for-the-badge" />
   <img src="https://img.shields.io/badge/License-MIT-10B981?style=for-the-badge" />
   <img src="https://img.shields.io/badge/Status-Production-22C55E?style=for-the-badge" />
 </p>
 
-**AIML App** is a production-ready, enterprise-grade AI assistant platform built on Cloudflare's global edge network. It gives your team access to 40+ leading AI models through a single, secure, credit-governed interface — with real-time collaboration, document intelligence (RAG), and full multi-tenant organization management built in.
+> **An AI Scrum Master runs your team's rituals; an AI Project Manager runs the
+> strategic layer above them.** Sprints, standups, retros, and reporting are the
+> hero. Team chat, huddles, canvases, and memory are the conversation and
+> knowledge layers that serve it.
 
-🌐 **Live at**: [aimlapp.com](https://aimlapp.com)
+🌐 **Live at [aimlapp.com](https://aimlapp.com)** · ▶️ **[Take the live tour](https://demo.aimlapp.com/app)** · 🆓 **[Start free](https://aimlapp.com/start)** — your whole team, no credit card.
 
 ---
 
-## Why AIML App?
+## What is AIMLAPP?
 
-| Pain Point | AIML App Solution |
+AIMLAPP is an **AI-native project & scrum management platform**. Instead of a
+board you have to babysit, you get an **AI Scrum Master** on staff: it opens your
+daily standups, chases non-responders, writes the digest, runs your retro and
+turns the takeaways into tickets, forecasts whether the sprint will land, and
+flags stale or duplicate work — all with full audit trails and a hard cost cap.
+
+Every company gets a **private, isolated workspace** at `your-company.aimlapp.com`
+with its own branding, members, boards, and data. One brand (like Slack or
+Linear) — not a rebrand-it-yourself white-label.
+
+---
+
+## ✨ Core features
+
+### 🤖 AI Scrum Master *(shipped)*
+Your autonomous agile facilitator:
+- **Daily standups** — opens them on schedule, collects async answers, nudges non-responders, and posts an AI-synthesised digest to the team huddle.
+- **Retrospectives** — collects "went well / went wrong / ideas", clusters themes with AI, and **files the top action items straight back as tickets** so retros aren't just talk.
+- **Mid-sprint forecast** — burndown math vs. commitment; projects whether you'll finish and suggests what to descope.
+- **Stale + duplicate detection** — sweeps neglected tickets and flags near-duplicate work before it ships twice.
+- **AI estimates & assignment hints** — suggests story points and the best-fit assignee from history.
+- **Safety rails by design** — every autonomous action is audit-logged, idempotent, kill-switchable, and capped by a daily AI budget.
+
+### 📋 Full Scrum & Project board
+- 7-column lifecycle (`draft → refined → ready → in progress → testing → pending → completed`), drag-and-drop, per-card menus.
+- **Sprints** with start / lock / complete lifecycle and a one-active-sprint invariant.
+- **Portfolio layer** — initiatives, epics (drag-rank), milestones, ticket dependencies, member capacity.
+- **Predictability & reports** — committed-vs-delivered (say/do), carryover, scope-change, on-time %, cycle/lead time, burndown, and an AI sprint-review close-out. Metrics are snapshotted immutably at sprint close, so history never gets rewritten.
+- **Scrum Master role** — granular control of rituals, sprint lock, and capacity, separate from org admin.
+- Multi-team boards with per-board membership (`org` / `team` / `private` visibility).
+
+### 💬 Team communication
+- **Huddles** (channels) — public or private, membership enforced at the data layer.
+- **Direct messages**, **@mentions** with an inbox, read receipts, scheduled send, presence/status, and Do-Not-Disturb.
+- **AI chat** powered by **DeepSeek V3 & R1** — with slash commands, an AI-assist toolbar (rewrite / shorten / translate / summarise), and prompt **personas**.
+
+### 🧠 Knowledge layer
+- **RAG** — attach a URL or paste text; it's scraped, chunked, embedded, and made queryable in natural language.
+- **Huddle Canvases** — a living markdown doc per huddle, re-indexed for AI retrieval.
+- **Personal memory** — a private, embeddings-backed memory store the AI can recall from.
+
+### 🏢 Multi-tenant by architecture
+- Auto-provisioned subdomain per org (`<company>.aimlapp.com`) in seconds.
+- **Hard isolation enforced at the database query layer** — not just list-hiding.
+- Per-org branding (logo, accent, app name), feature toggles, credit pools, and per-member quotas.
+
+### 🔐 Security, identity & compliance
+- **SSO** (SAML / OIDC) and **SCIM 2.0 provisioning** — connect your **Active Directory / Microsoft Entra / Okta** so users are created *and de-provisioned* automatically. Self-service setup right in your org admin panel. → [docs/security.md](docs/security.md)
+- **2FA (TOTP)** and passwordless **magic-link** sign-in.
+- **Immutable audit log** of every privileged action, with CSV export.
+- **DLP / PII masking**, configurable **data retention**, **member anonymisation** on removal.
+- **GDPR**: one-click org data export and self-service account deletion.
+- **BYO key** — enterprises can route AI through their own DeepSeek key, encrypted at rest (AES-GCM, per-org key derivation).
+
+---
+
+## 💸 Pricing — one AI, flat, no surprises
+
+Every plan runs on **DeepSeek (V3 + R1) at a flat 1 credit per request**. Because
+DeepSeek is **prepaid**, a runaway AI bill is impossible.
+
+| Plan | Price | Team | AI credits / mo | Highlights |
+|---|---|---|---|---|
+| **Free** | $0 forever | up to 15 | 200 | Full workspace, AI Scrum Master, your own subdomain |
+| **Pro** | $29/mo | up to 25 | 5,000 | Roles, audit log, per-member quotas, priority support |
+| **Business** | $99/mo | up to 100 | 25,000 | DLP, custom retention, GDPR export, SLA-ready |
+| **Enterprise** | Custom | unlimited | custom | SSO + SCIM, BYO key, compliance, dedicated SLA |
+
+[Start free →](https://aimlapp.com/start) · full breakdown in [docs/pricing.md](docs/pricing.md)
+
+---
+
+## 🚀 Getting started
+
+1. Go to **[aimlapp.com/start](https://aimlapp.com/start)** and create your free workspace (up to 15 people, no card).
+2. You land on **`your-company.aimlapp.com`** — invite your team, create a board, link a huddle.
+3. Turn on the **AI Scrum Master** and let it run your first standup.
+4. *(Optional, Enterprise)* Connect your Active Directory via **SCIM** from the org admin panel for automatic user provisioning.
+
+Prefer to look before you sign up? **[Take the live tour →](https://demo.aimlapp.com/app)**
+
+---
+
+## 📚 Documentation
+
+| Doc | What's inside |
 |---|---|
-| Managing API keys for multiple AI providers | Single platform — Gemini, OpenAI, Anthropic, DeepSeek all in one |
-| No visibility into AI usage and costs | Real-time analytics dashboard with per-user credit tracking |
-| AI responses can't be verified | Built-in cross-model verification — check any response with a second model |
-| Can't collaborate on AI tasks | Real-time shared chat rooms with WebSocket sync |
-| Uploading docs to every AI tool separately | RAG pipeline — attach URLs/documents once, query with any model |
-| Managing AI access across teams | Multi-tenant org system with seat limits, roles, and credit pools |
+| [docs/use-cases.md](docs/use-cases.md) | Who it's for and how teams run on it |
+| [docs/pricing.md](docs/pricing.md) | Plans, credits, and what a credit buys |
+| [docs/security.md](docs/security.md) | Isolation, SSO/SCIM/AD, audit, DLP, retention, BYO keys |
+| [docs/multi-tenancy.md](docs/multi-tenancy.md) | Per-org subdomains and data isolation |
+| [docs/rag.md](docs/rag.md) | Document intelligence (RAG) pipeline |
+| [docs/realtime.md](docs/realtime.md) | Real-time huddles and presence |
+| [docs/api-reference.md](docs/api-reference.md) | API surface overview |
 
 ---
 
-## Core Features
+## 🛠️ Built on
 
-### 🤖 Multi-Model AI Chat
-Access 40+ models from four providers in a single interface. Switch models per message. All requests are credit-governed with automatic refunds on failure.
-
-**Supported Providers:**
-- **Google Gemini** — Gemini 2.5 Flash, Gemini 2.0 Flash, Gemini 1.5 Pro/Flash
-- **OpenAI** — GPT-4.1, GPT-4o, GPT-4 Turbo, o1, o3-mini
-- **Anthropic** — Claude Opus 4.7, Claude Sonnet 4.5, Claude Haiku 4.5
-- **DeepSeek** — DeepSeek V3, DeepSeek R1
-
-### 🔍 Cross-Model Verification
-Every AI response has a built-in **Verify** button. Select any other model to independently review and critique the response — eliminating single-model blind spots.
-
-### 📄 Document Intelligence (RAG)
-Attach any public URL and AIML App scrapes, chunks, embeds, and indexes it automatically. Then query your documents in natural language using any AI model. Sessions expire after 8 hours — no data hoarding.
-
-### ⚡ Real-Time Collaborative Rooms
-Invite teammates into shared AI chat rooms. Everyone sees messages in real time via WebSocket (Cloudflare Durable Objects). The AI participates in the group conversation. Perfect for pair-programming, research sessions, and team decision-making.
-
-### 🏢 Multi-Tenant Organizations
-Platform admins create organizations with seat limits, plan tiers, subscription expiry, and a shared credit pool. Org admins manage members and quotas without touching the platform admin dashboard.
-
-### 🤫 Silent Standups & Meeting Minutes
-Org admins can start a silent standup room. When it ends, an LLM automatically generates structured Meeting Minutes (MoM) and emails them to every participant.
-
-### 📊 Admin Analytics
-Real-time dashboard showing total requests, active sessions, user plans, credit consumption, email delivery logs, and model usage breakdowns.
+**Cloudflare Workers + Pages** · **D1** (SQLite) · **KV** · **Vectorize** (embeddings) ·
+**Durable Objects** (real-time) · **Workers AI** (embeddings) · **DeepSeek** (chat & reasoning) ·
+**React 19 + Vite + Tailwind** (marketing). Single-provider, prepaid, cost-capped AI.
 
 ---
 
-## Quick Start
-
-### For End Users
-1. Visit [aimlapp.com](https://aimlapp.com) and register
-2. You get **20 free credits** on signup (no credit card required)
-3. Select a model, type your question, get an answer
-4. Use the **Verify** button to cross-check responses with a second model
-5. Attach a URL for document-grounded answers
-
-### For Organizations
-1. Contact us to provision your org
-2. You receive a `SUB-XXXXXXXXXXXX` subscription ID
-3. Your org admin invites members by email
-4. Members get access to a shared credit pool with optional per-member quotas
-
-### For Developers
-See the [API Reference](docs/api-reference.md) to integrate AIML App into your own workflows and applications.
-
----
-
-## Documentation
-
-| Document | Description |
-|---|---|
-| [API Reference](docs/api-reference.md) | All endpoints, request/response schemas, authentication |
-| [Use Cases](docs/use-cases.md) | Industry-specific use cases and workflows |
-| [Security](docs/security.md) | Security architecture, auth model, data handling |
-| [Organizations & Multi-Tenancy](docs/multi-tenancy.md) | Org management, roles, credit pools |
-| [RAG — Document Intelligence](docs/rag.md) | How to use document-grounded AI |
-| [Real-Time Chat Rooms](docs/realtime.md) | Collaborative rooms and WebSocket architecture |
-| [Pricing & Plans](docs/pricing.md) | Plan tiers, credits, and billing model |
-
----
-
-## Architecture Overview
-
-```
-User Request
-    │
-    ▼
-Cloudflare Pages (Edge, 300+ PoPs globally)
-    │
-    ▼
-functions/index.js  ←  Main router
-    │
-    ├── /api/chat       ← Multi-model LLM inference + streaming
-    ├── /api/auth       ← Auth: register, login, OAuth, password reset
-    ├── /api/orgs       ← Multi-tenant organization management
-    ├── /api/rag        ← RAG: scrape → embed → query
-    ├── /api/analytics  ← Admin dashboard
-    ├── /api/messages   ← Direct messages
-    └── /api/bookmarks  ← Saved responses
-         │
-         ▼
-    External LLM APIs (Gemini / OpenAI / Anthropic / DeepSeek)
-    Cloudflare D1 (SQLite)
-    Cloudflare KV (sessions, cache, rate limits)
-    Cloudflare Vectorize (RAG vector search)
-    Cloudflare Workers AI (embeddings)
-    Cloudflare Durable Objects (WebSocket rooms)
-    Resend (transactional email)
-```
-
----
-
-## Technology Stack
-
-| Layer | Technology |
-|---|---|
-| Runtime | Cloudflare Workers (V8 isolates, edge-native) |
-| Database | Cloudflare D1 (SQLite) |
-| Sessions & Cache | Cloudflare KV |
-| Vector Search | Cloudflare Vectorize (768-dim cosine) |
-| Embeddings | Cloudflare Workers AI (`bge-base-en-v1.5`) |
-| Real-Time | Cloudflare Durable Objects + WebSocket |
-| Email | Resend |
-| Auth | PBKDF2-SHA256 + session tokens, Google OAuth, Microsoft OAuth |
-
----
-
-## License
-
-MIT — see [LICENSE](LICENSE)
-
----
-
-<p align="center">Built on Cloudflare's global edge network · Serving users at <a href="https://aimlapp.com">aimlapp.com</a></p>
+<p align="center"><sub>© AIMLAPP — AI Project &amp; Scrum Management · <a href="https://aimlapp.com">aimlapp.com</a></sub></p>

@@ -93,7 +93,7 @@ Org admins can run asynchronous standups without a live meeting:
 2. All org members receive an email with a link to the standup room
 3. Members join the room and type their updates (async — no need to be online at the same time)
 4. Admin ends the standup: `POST /api/orgs { "action": "end_standup", "room_id": "..." }`
-5. If `send_mom: true`, the platform reads the full transcript, sends it to Gemini 2.5 Flash, generates structured Meeting Minutes, and emails them to every participant
+5. If `send_mom: true`, the platform reads the full transcript, sends it to DeepSeek, generates structured Meeting Minutes, and emails them to every participant
 
 ---
 
